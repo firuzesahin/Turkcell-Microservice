@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: invoice-service
+  data:
+    mongodb:
+      database: invoicedb
+      uri: mongodb://localhost:27017/invoicedb
+  cloud:
+    config:
+      enabled: false
