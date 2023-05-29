@@ -1,11 +1,9 @@
 package com.kodlamaio.invoiceservice.business.kafka.consumer;
 
 import com.kodlamaio.commonpackage.events.inventory.CarCreatedEvent;
-import com.kodlamaio.commonpackage.events.rental.RentalInvoiceCreatedEvent;
 import com.kodlamaio.commonpackage.utils.mappers.ModelMapperService;
 import com.kodlamaio.invoiceservice.business.abstracts.InvoiceService;
 import com.kodlamaio.invoiceservice.business.dto.requests.CreateInvoiceRequest;
-import com.kodlamaio.invoiceservice.entities.Invoice;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
