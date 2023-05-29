@@ -1,33 +1,36 @@
 package com.kodlamaio.commonpackage.utils.dto;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentRequest
 {
-    @NotEmpty(message = "Card number is required")
-    @Size(min = 16, max = 16, message = "Card number must be 16 charachters long")
+    @NotBlank(message = "Kart numarası alanı boş bırakılamaz.")
+    @Length(min = 16, max = 16, message = "Kart numarası 16 haneden oluşmalıdır.")
     private String cardNumber;
-    
-    @NotBlank(message = "card holder is required")
+
+    @NotBlank(message = "Kart sahibi bilgisi boş bırakılamaz.")
+    @Length(min = 5, message = "Kart sahibi bilgisi en az 5 karakterden oluşmalıdır.")
     private String cardHolder;
-    
-    @Min(value = 2023, message = "Card expiration year must be at least current year")
+
+    @Min(value = 2023, message = "Kart son kullanma yılı geçersiz.")
     private int cardExpirationYear;
-    
-    @Min(value = 1, message = "Card expiration month must be between 1 and 12")
-    @Max(value = 12, message = "Card expiration month must be between 1 and 12")
+
+    @Max(value = 12)
+    @Min(value = 1)
     private int cardExpirationMonth;
-    
-    @NotEmpty(message = "Card CVV is required")
-    @Size(min = 3, max = 3, message = "Card CVV must be 3 characthers long")
+
+    @NotBlank
+    @Length(min = 3, max = 3)
     private String cardCvv;
 }

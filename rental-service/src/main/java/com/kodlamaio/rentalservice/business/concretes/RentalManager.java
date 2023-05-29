@@ -4,7 +4,6 @@ import com.kodlamaio.commonpackage.events.rental.RentalCreatedEvent;
 import com.kodlamaio.commonpackage.events.rental.RentalDeletedEvent;
 import com.kodlamaio.commonpackage.events.rental.RentalInvoiceCreatedEvent;
 import com.kodlamaio.commonpackage.utils.dto.CreateRentalPaymentRequest;
-import com.kodlamaio.commonpackage.utils.dto.PaymentRequest;
 import com.kodlamaio.commonpackage.utils.enums.State;
 import com.kodlamaio.commonpackage.utils.kafka.producer.KafkaProducer;
 import com.kodlamaio.commonpackage.utils.mappers.ModelMapperService;
@@ -120,7 +119,7 @@ public class RentalManager implements RentalService
         producer.sendMessage(event, "rental-invoice-created");
     }
 
-    private RentalInvoiceCreatedEvent prepareRentalInvoiceCreatedEvent(CreateRentalRequest request, Rental rental, CreateRentalPaymentRequest paymentRequest)
+    private prepareRentalInvoiceCreatedEvent prepareRentalInvoiceCreatedEvent(CreateRentalRequest request, Rental rental, CreateRentalPaymentRequest paymentRequest)
     {
         var car = carClient.getById(request.getCarId());
         RentalInvoiceCreatedEvent event = mapper.forResponse().map(car, RentalInvoiceCreatedEvent.class);
